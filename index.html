@@ -1,0 +1,172 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Valentine</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet"><style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#ff9a9e,#fad0c4,#ffd1ff);
+  font-family:'Poppins',sans-serif;
+}
+
+.card{
+  background:white;
+  padding:25px;
+  border-radius:22px;
+  width:90%;
+  max-width:380px;
+  text-align:center;
+  box-shadow:0 0 25px rgba(0,0,0,0.3);
+}
+
+.title{
+  font-family:'Pacifico',cursive;
+  font-size:32px;
+  background:linear-gradient(to right,#ff2e63,#ff8fab,#ff4d6d);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.question{
+  font-size:20px;
+  margin-top:10px;
+}
+
+button{
+  padding:10px 24px;
+  border:none;
+  border-radius:25px;
+  font-size:18px;
+  cursor:pointer;
+}
+
+.yes{
+  background:#ff2e63;
+  color:white;
+}
+
+.no{
+  background:#777;
+  color:white;
+  position:absolute;
+}
+
+.buttons{
+  margin-top:20px;
+  position:relative;
+  height:90px;
+}
+
+.hidden{display:none;}
+
+.note{
+  font-family:'Pacifico',cursive;
+  font-size:20px;
+  color:#ff2e63;
+}
+
+.heart,.rose{
+  position:fixed;
+  animation:float 5s linear infinite;
+}
+
+.heart{color:red;}
+.rose{color:pink;}
+
+@keyframes float{
+  0%{transform:translateY(100vh);opacity:1;}
+  100%{transform:translateY(-10vh);opacity:0;}
+}
+
+.gift{
+  background:#ff4d6d;
+  color:white;
+  padding:12px;
+  border-radius:20px;
+  margin-top:15px;
+}
+
+video{
+  width:100%;
+  border-radius:15px;
+  margin-top:15px;
+}
+</style></head>
+<body><div class="card"><!-- Screen 1 --><div id="s1">
+<h1 class="title">Motuk ❤️</h1>
+<p class="question">Will you be my Valentine?</p>
+<div class="buttons">
+<button class="yes" id="y1">Yes</button>
+<button class="no" id="n1">No</button>
+</div>
+</div><!-- Screen 2 --><div id="s2" class="hidden">
+<h1 class="title">Just One More 💖</h1>
+<p class="question">Will you spend your whole day with me on 14th February? 🥰</p>
+<div class="buttons">
+<button class="yes" id="y2">Yes</button>
+<button class="no" id="n2">No</button>
+</div>
+</div><!-- Screen 3 --><div id="s3" class="hidden">
+<p class="note">Meri pyaari Motuk ❤️</p>
+<p>I am not the boy whom you dream of,</p>
+<p>But I will be the man who makes you happy forever 💍</p>
+<p>I Love You So Much 💖</p>
+<button class="gift" id="openGift">🎁 A Small Gift For You (Open)</button>
+</div><!-- Screen 4 --><div id="s4" class="hidden">
+<video controls autoplay>
+<source src="yourvideo.mp4" type="video/mp4">
+</video>
+</div></div><script>
+let n1=document.getElementById("n1");
+let n2=document.getElementById("n2");
+let y1=document.getElementById("y1");
+let y2=document.getElementById("y2");
+let openGift=document.getElementById("openGift");
+
+let s1=document.getElementById("s1");
+let s2=document.getElementById("s2");
+let s3=document.getElementById("s3");
+let s4=document.getElementById("s4");
+
+function move(btn){
+ btn.style.left=Math.random()*200+"px";
+ btn.style.top=Math.random()*70+"px";
+}
+
+n1.onmouseover=()=>move(n1);
+n2.onmouseover=()=>move(n2);
+
+y1.onclick=()=>{s1.classList.add("hidden");s2.classList.remove("hidden");spawnRoses();}
+
+y2.onclick=()=>{s2.classList.add("hidden");s3.classList.remove("hidden");spawnHearts();}
+
+openGift.onclick=()=>{s3.classList.add("hidden");s4.classList.remove("hidden");}
+
+function spawnHearts(){
+ setInterval(()=>{
+  let h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="❤️";
+  h.style.left=Math.random()*100+"vw";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),5000);
+ },300);
+}
+
+function spawnRoses(){
+ setInterval(()=>{
+  let r=document.createElement("div");
+  r.className="rose";
+  r.innerHTML="🌹";
+  r.style.left=Math.random()*100+"vw";
+  document.body.appendChild(r);
+  setTimeout(()=>r.remove(),5000);
+ },400);
+}
+</script></body>
+</html>
